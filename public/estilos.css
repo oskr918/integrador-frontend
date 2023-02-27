@@ -1,0 +1,25 @@
+.encabezado {
+    text-align: center;
+    color: #F4F8FF;
+    padding: 20px;
+    background-color:#2D7CE6;
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #4B94F7, #000e61);
+}
+
+.imgcabecera {
+    position: absolute;
+    left: 20px;
+    height: 45px;
+    vertical-align: middle;
+}
+
+.container {
+    padding: 0.1px;
+}
+
+#navvar {
+    font-family: 'Poppins', sans-serif !important;
+}
+  
