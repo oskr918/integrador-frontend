@@ -15,7 +15,7 @@ function Menu () {
         <Nav.Link href="/Cursos">Cursos<br/><i class="fa-solid fa-graduation-cap"></i></Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="/Login">Login<br/><i class="fa-solid fa-right-to-bracket"></i></Nav.Link>
+        <Nav.Link eventKey="/Login" href="/Login">Login<br/><i class="fa-solid fa-right-to-bracket"></i></Nav.Link>
       </Nav.Item>
     </Nav>
     </>
