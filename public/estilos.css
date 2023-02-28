@@ -8,13 +8,6 @@
     background: linear-gradient(to right, #4B94F7, #000e61);
 }
 
-.imgcabecera {
-    position: absolute;
-    left: 20px;
-    height: 45px;
-    vertical-align: middle;
-}
-
 .container {
     padding: 0.1px;
 }
@@ -22,4 +15,28 @@
 #navvar {
     font-family: 'Poppins', sans-serif !important;
 }
-  
+
+#izq {
+    padding-left: 600px;
+    padding-right: 100px;
+    padding-top: 150px;
+    font-family: 'poppins';
+    color: #444444;
+    margin-left: 100px;
+}
+
+button  {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: var(--bold-font);
+    transition: var(--transition);
+}
+
+body {
+    background-image: url("../img/foto.png");
+  }
