@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [nickname, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
+    console.log(`Email: ${nickname}, Password: ${password}`);
   };
 
   return (
@@ -19,11 +19,11 @@ const Login = () => {
             <div class="card-img-overlay">
               <Form onSubmit={handleSubmit} id="izq">
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label>Nickname</Form.Label>
                   <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
+                    type="text"
+                    placeholder="Nickname"
+                    value={nickname}
                     onChange={(event) => setEmail(event.target.value)}
                   />
                 </Form.Group>
