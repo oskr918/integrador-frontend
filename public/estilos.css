@@ -14,6 +14,7 @@
 
 #navvar {
     font-family: 'Poppins', sans-serif !important;
+    background-color: white;
 }
 
 #izq {
@@ -40,3 +41,13 @@ button  {
 body {
     background-image: url("../img/foto.png");
   }
+
+#Lista {
+    width: 700px;
+    padding-left: 700px;
+    font-family: 'poppins';
+    color: #444444;
+    margin-left: 500px;
+    margin-top: 70px;
+}
+

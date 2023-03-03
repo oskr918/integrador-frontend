@@ -7,8 +7,7 @@ function Menu() {
         <h3 class="encabezado">
           PORTAL SILICON WEB FULL STACK
         </h3>
-        <div class="container" id="navvar">
-          <div class="abs-center" >
+          <div class="abs-center" id="navvar">
             <Nav justify variant="tabs" href="/">
               <Nav.Item>
                 <Nav.Link href="/">Home<br /><i class="fa-solid fa-house"></i></Nav.Link>
@@ -21,7 +20,7 @@ function Menu() {
               </Nav.Item>
             </Nav>
           </div>
-        </div>
+    
 
       </body>
     </>
