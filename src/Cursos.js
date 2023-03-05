@@ -62,7 +62,6 @@ class Cursos extends React.Component {
           </div>
         </div>
       </>
-
     );
   }
 }

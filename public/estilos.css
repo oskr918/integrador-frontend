@@ -51,3 +51,26 @@ body {
     margin-top: 70px;
 }
 
+#ListaAl {
+    width: 1000px;
+    font-family: 'poppins';
+    color: #444444;
+    margin-left: 140px;
+    margin-top: 140px;
+}
+
+#Editar{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: var(--bold-font);
+    transition: var(--transition);  
+}
+
+
+
+
