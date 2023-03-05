@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-
 class Cursos extends React.Component {
   constructor(props) {
     super(props);
@@ -8,9 +6,11 @@ class Cursos extends React.Component {
       Cursos: []
     };
   }
-
   componentDidMount() {
-    fetch("http://localhost:5000/api/curso")
+    const token = localStorage.getItem('token'); // obtener el token del almacenamiento local
+    const headers = { 'Authorization': `Bearer ${token}` }; // crear el encabezado de autorización
+  console.log("token", token)
+    fetch("http://localhost:5000/api/curso", { headers })
       .then(res => res.json())
       .then(result => {
         console.log(result);
@@ -41,10 +41,10 @@ class Cursos extends React.Component {
 
     return (
       <>
-        <div class="container">
-          <div class="card">
-            <img src="../img/Cursos.png" class="card-img" alt="img" />
-            <div class="card-img-overlay">
+        <div className="container">
+          <div className="card">
+            <img src="../img/Cursos.png" className="card-img" alt="img" />
+            <div className="card-img-overlay">
               <table className="table table-striped" id="Lista">
                 <thead>
                   <tr>

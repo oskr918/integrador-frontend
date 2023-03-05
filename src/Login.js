@@ -5,9 +5,20 @@ const Login = () => {
   const [nickname, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Email: ${nickname}, Password: ${password}`);
+    const data = { nickname, password };
+    const response = await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    localStorage.setItem('token', result.token);
+    console.log(localStorage.getItem('token'))
+    
   };
 
   return (
