@@ -10,6 +10,7 @@
 
 .container {
     padding: 0.1px;
+    font-family:'poppins';
 }
 
 #navvar {
@@ -26,7 +27,7 @@
     margin-left: 100px;
 }
 
-button  {
+button {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -56,7 +57,7 @@ body {
     font-family: 'poppins';
     color: #444444;
     margin-left: 140px;
-    margin-top: 140px;
+    margin-top: 25px;
 }
 
 #Editar{
@@ -71,6 +72,28 @@ body {
     transition: var(--transition);  
 }
 
+#add{
+    font-family: 'poppins';
+    background-color:#86c3ec;
+    color:white;
+    width: 17%;
+    padding: 4px;
+    margin-left: 530px;
+    margin-top: 65px;
+}
 
+#gest {
+    padding: 0.1px;
+    font-family:'poppins';
+    padding: 4px;
+    margin-left: 550px;
+    margin-top: 180px;
+    width: 50%;
+}
 
-
+#hh{
+    margin-left: 160px;
+    margin-top: 84px;
+    width: 50%;
+    color: #444444;
+}
