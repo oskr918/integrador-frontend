@@ -1,6 +1,8 @@
 import Nav from 'react-bootstrap/Nav';
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
+import Perfil from './Perfil';
+import { NavItem } from 'react-bootstrap';
 
 function Menu() {
   const [user, setUser] = useState(null);
@@ -12,10 +14,11 @@ function Menu() {
       setUser(decoded);
     }
   }, []);
-console.log(user)
+  console.log(user)
   return (
     <>
       <body background="../img/foto.png">
+
         <h3 class="encabezado">
           PORTAL SILICON WEB FULL STACK
         </h3>
