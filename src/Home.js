@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Menu from "./Menu";
 import  CarouselFadeExample from './Carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

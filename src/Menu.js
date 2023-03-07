@@ -1,4 +1,7 @@
 import Nav from 'react-bootstrap/Nav';
+import { Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { useEffect, useState } from "react";
 
 function Menu() {
   return (
@@ -13,10 +16,10 @@ function Menu() {
                 <Nav.Link href="/">Home<br /><i class="fa-solid fa-house"></i></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/Cursos">Cursos<br /><i class="fa-solid fa-graduation-cap"></i></Nav.Link>
+                <Nav.Link href="/curso/list">Lista de cursos<br /><i class="fa-solid fa-list-ol"></i></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="/Login" href="/Login">Login<br /><i class="fa-solid fa-right-to-bracket"></i></Nav.Link>
+                <Nav.Link eventKey="/alumno/list" href="/alumno/list"> Lista de alumnos<br /><i class="fa-solid fa-list"></i></Nav.Link>
               </Nav.Item>
             </Nav>
           </div>
