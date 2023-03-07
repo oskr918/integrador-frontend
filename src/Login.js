@@ -40,7 +40,7 @@ const Login = () => {
                   <Form.Label>Nickname</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Nickname"
+                    placeholder="Enter nickname"
                     value={nickname}
                     onChange={(event) => setEmail(event.target.value)}
                   />
@@ -50,7 +50,7 @@ const Login = () => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                   />
