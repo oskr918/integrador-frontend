@@ -4,6 +4,16 @@ import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 
 function Menu() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwt_decode(token);
+      setUser(decoded);
+    }
+  }, []);
+console.log(user)
   return (
     <>
       <body background="../img/foto.png">
@@ -12,19 +22,33 @@ function Menu() {
         </h3>
           <div class="abs-center" id="navvar">
             <Nav justify variant="tabs" href="/">
-              <Nav.Item>
-                <Nav.Link href="/">Home<br /><i class="fa-solid fa-house"></i></Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/curso/list">Lista de cursos<br /><i class="fa-solid fa-list-ol"></i></Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="/alumno/list" href="/alumno/list"> Lista de alumnos<br /><i class="fa-solid fa-list"></i></Nav.Link>
-              </Nav.Item>
+              {user ? (
+                <>
+                  <Nav.Item>
+                    <Nav.Link href="/">Home<br /><i class="fa-solid fa-house"></i></Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/curso/list">Lista de cursos<br /><i class="fa-solid fa-list-ol"></i></Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="/alumno/list" href="/alumno/list"> Lista de alumnos<br /><i class="fa-solid fa-list"></i></Nav.Link>
+                  </Nav.Item>
+                </>
+              ) : (
+                <>
+                  <Nav.Item>
+                    <Nav.Link href="/">Home</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/curso/list">Cursos</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                  </Nav.Item>
+                </>
+              )}
             </Nav>
           </div>
-    
-
       </body>
     </>
   );

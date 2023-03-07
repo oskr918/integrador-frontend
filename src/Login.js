@@ -17,9 +17,16 @@ const Login = () => {
     });
     const result = await response.json();
     localStorage.setItem('token', result.token);
-    console.log(localStorage.getItem('token'))
-    
+    console.log(localStorage.getItem('token'));
+  
+    // Si el token es válido, redirige a la página de inicio
+    if (result.token) {
+      window.location.href = "/home";
+    }else{
+      alert("el usuario no es valido")
+    }
   };
+  
 
   return (
     <>
