@@ -52,7 +52,7 @@ class AlumnoList extends React.Component {
       .then(result => {
         if (result.ok) {
           toast.success(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -60,11 +60,11 @@ class AlumnoList extends React.Component {
             draggable: true,
             progress: undefined,
             theme: "light",
-          });
+            });
           this.componentDidMount();
         } else {
           toast.error(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -140,13 +140,13 @@ class AlumnoList extends React.Component {
         <td>{alumno.dni}</td>
         <th>
             <Link to={`/alumno/gest/${alumno.id}`}>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="button">
             <i class="fa-solid fa-user-gear"></i>
               </Button>
             </Link>
           </th>
           <th>
-              <Button variant="danger" type="submit"  onClick={() => this.handleOpen(alumno)}>
+              <Button variant="danger" type="button"  onClick={() => this.handleOpen(alumno)}>
                 <i class="fa-solid fa-user-xmark"></i>
               </Button>
           </th>
@@ -163,7 +163,7 @@ class AlumnoList extends React.Component {
             <div class="card-img-overlay">
             <Link to={`/alumno/gest`}>
                 <Button type="submit" id="add">
-                  Agregar alumno/na
+                  Agregar nuevo alumno/a
                 </Button>
               </Link>
               <table className="table table-striped" id="ListaAl">

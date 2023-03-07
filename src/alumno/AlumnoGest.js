@@ -46,7 +46,7 @@ class InternalAlumnoGest extends React.Component {
             });
           } else {
             toast.error(result.body.message, {
-              position: "bottom-right",
+              position: "top-center",
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -106,7 +106,7 @@ class InternalAlumnoGest extends React.Component {
       .then(result => {
         if (result.ok) {
           toast.success(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -114,11 +114,11 @@ class InternalAlumnoGest extends React.Component {
             draggable: true,
             progress: undefined,
             theme: "light",
-          });
+            });
           this.props.navigate("/alumno/list");
         } else {
           toast.error(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
