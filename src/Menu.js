@@ -1,5 +1,4 @@
 import Nav from 'react-bootstrap/Nav';
-import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Perfil from './Perfil';
