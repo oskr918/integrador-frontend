@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 import { toast } from "react-toastify";
+import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 class CursoList extends React.Component {
@@ -24,7 +24,7 @@ class CursoList extends React.Component {
   }
   handleOpen(curso) {
     this.setState({
-      alumnoAEliminar: curso,
+      cursoAEliminar: curso,
       modalConfirmarEliminacion: true
     });
   }
@@ -38,7 +38,7 @@ class CursoList extends React.Component {
       }
     };
 
-    fetch(`http://localhost:5000/api/curso${this.state.alumnoAEliminar.id}`, request)
+    fetch(`http://localhost:5000/api/curso/${this.state.cursoAEliminar.id}`, request)
       .then(res => {
         return res.json().then(body => {
           return {
@@ -52,7 +52,7 @@ class CursoList extends React.Component {
       .then(result => {
         if (result.ok) {
           toast.success(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -60,11 +60,11 @@ class CursoList extends React.Component {
             draggable: true,
             progress: undefined,
             theme: "light",
-          });
+            });
           this.componentDidMount();
         } else {
           toast.error(result.body.message, {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -128,6 +128,7 @@ class CursoList extends React.Component {
         }
       )
   }
+  debugger
   render() {
     let rowsTable = this.state.cursos.map((curso, index) => {
       return (
@@ -139,13 +140,13 @@ class CursoList extends React.Component {
             <td>{curso.anio}</td>
             <th>
             <Link to={`/curso/gest/${curso.id}`}>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="button">
                 <i class="fa-solid fa-gears"></i>
                 </Button>
               </Link>
             </th>
             <th>
-              <Button variant="danger" type="submit" onClick={() => this.handleOpen(curso)}>
+              <Button variant="danger" type="button" onClick={() => this.handleOpen(curso)}>
               <i class="fa-solid fa-delete-left"></i>
               </Button>
             </th>
