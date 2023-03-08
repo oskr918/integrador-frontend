@@ -21,7 +21,7 @@ const Login = () => {
   
     // Si el token es válido, redirige a la página de inicio
     if (result.token) {
-      window.location.href = "/home";
+      window.location.href = "/";
     }else{
       alert("el usuario no es valido")
     }
