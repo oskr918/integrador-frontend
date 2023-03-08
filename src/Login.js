@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 const Login = () => {
   const [nickname, setEmail] = useState('');
@@ -23,7 +24,7 @@ const Login = () => {
     if (result.token) {
       window.location.href = "/";
     }else{
-      alert("el usuario no es valido")
+      swal("Acceso denegado", "Los datos ingresados son incorrectos.", "warning");
     }
   };
   
