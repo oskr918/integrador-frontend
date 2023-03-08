@@ -1,5 +1,5 @@
 import React from "react";
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate, useParams } from "react-router-dom";
 
 class InternalCursoGest extends React.Component {
@@ -89,7 +89,7 @@ class InternalCursoGest extends React.Component {
       }
     };
 
-    const url = this.props.params.id?`http://localhost:5000/api/curso/${this.props.params.id}`:"http://localhost:5000/api/curso";
+    const url = this.props.params.id ? `http://localhost:5000/api/curso/${this.props.params.id}` : "http://localhost:5000/api/curso";
 
     fetch(url, request)
       .then(res => {
@@ -137,41 +137,41 @@ class InternalCursoGest extends React.Component {
   render() {
     return (
       <div class="container">
-      <div class="abs-center">
-      <div class="card">
-          <img src="./../img/Gestion.png" class="card-img" alt="img" />
-          <div class="card-img-overlay">
-          <h2 id="hh">{this.props.params.dni ? "Modificando " + this.state.nombre : "Creando curso..."}</h2>
+        <div class="abs-center">
+          <div class="card">
+            <img src="./../img/Gestion.png" class="card-img" alt="img" />
+            <div class="card-img-overlay">
+              <h2 id="hh">{this.props.params.dni ? "Modificando " + this.state.nombre : "Creando curso..."}</h2>
+            </div>
+            <div class="card-img-overlay" id="gest">
+              <div className="row">
+                <div className="col">
+                  <form onSubmit={this.handleSubmit} method="POST">
+                    <div className="mb-3">
+                      <label htmlFor="dni" className="form-label">ID:</label>
+                      <input type="text" className="form-control" id="id" name="id" value={this.state.id} onChange={this.handleChange} />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="nombre" className="form-label">Nombre:</label>
+                      <input type="text" className="form-control" id="nombre" name="nombre" value={this.state.nombre} onChange={this.handleChange} />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="descripcion" className="form-label">Descripción:</label>
+                      <input type="text" className="form-control" id="descripcion" name="descripcion" value={this.state.descripcion} onChange={this.handleChange} />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="anio" className="form-label">Año:</label>
+                      <input type="text" className="form-control" id="anio" name="anio" value={this.state.anio} onChange={this.handleChange} />
+                    </div>
+                    <button type="submit">
+                      Guardar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-img-overlay" id="gest">
-      <div className="row">
-        <div className="col">
-          <form onSubmit={this.handleSubmit} method="POST">
-            <div className="mb-3">
-              <label htmlFor="dni" className="form-label">ID:</label>
-              <input type="text" className="form-control" id="id" name="id" value={this.state.id} onChange={this.handleChange} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="nombre" className="form-label">Nombre:</label>
-              <input type="text" className="form-control" id="nombre" name="nombre" value={this.state.nombre} onChange={this.handleChange} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="descripcion" className="form-label">Descripción:</label>
-              <input type="text" className="form-control" id="descripcion" name="descripcion" value={this.state.descripcion} onChange={this.handleChange} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="anio" className="form-label">Año:</label>
-              <input type="text" className="form-control" id="anio" name="anio" value={this.state.anio} onChange={this.handleChange} />
-            </div>
-            <button type="submit">
-                Guardar
-            </button> 
-          </form>
         </div>
-      </div>
-      </div>
-        </div>
-      </div>
       </div>
     );
   }
@@ -180,7 +180,7 @@ class InternalCursoGest extends React.Component {
 
 export function CursoGest(props) {
   const navigate = useNavigate();
-  const params = useParams(); 
+  const params = useParams();
   return <InternalCursoGest navigate={navigate} params={params} />
 }
 
