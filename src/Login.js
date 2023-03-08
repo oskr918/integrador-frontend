@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 const Login = () => {
   const [nickname, setEmail] = useState('');
@@ -21,9 +22,9 @@ const Login = () => {
   
     // Si el token es válido, redirige a la página de inicio
     if (result.token) {
-      window.location.href = "/home";
+      window.location.href = "/";
     }else{
-      alert("el usuario no es valido")
+      swal("Acceso denegado", "Los datos ingresados son incorrectos.", "warning");
     }
   };
   
@@ -40,7 +41,7 @@ const Login = () => {
                   <Form.Label>Nickname</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Nickname"
+                    placeholder="Enter nickname"
                     value={nickname}
                     onChange={(event) => setEmail(event.target.value)}
                   />
@@ -50,7 +51,7 @@ const Login = () => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                   />

@@ -41,12 +41,12 @@ class InternalCursoGest extends React.Component {
             this.setState({
               id: result.body.id,
               nombre: result.body.nombre,
-              apellido: result.body.descripcion,
-              dni: result.body.anio,
+              descripcion: result.body.descripcion,
+              anio: result.body.anio,
             });
           } else {
             toast.error(result.body.message, {
-              position: "bottom-right",
+              position: "top-center",
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -105,7 +105,19 @@ class InternalCursoGest extends React.Component {
       .then(result => {
         if (result.ok) {
           toast.success(result.body.message, {
-            position: "bottom-right",
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
+          this.props.navigate("/curso/list");
+        } else {
+          toast.success(result.body.message, {
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -115,17 +127,6 @@ class InternalCursoGest extends React.Component {
             theme: "light",
           });
           this.props.navigate("/curso/list");
-        } else {
-          toast.error(result.body.message, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
         }
       },
         (error) => {

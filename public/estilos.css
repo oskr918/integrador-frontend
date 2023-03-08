@@ -44,12 +44,11 @@ body {
   }
 
 #Lista {
-    width: 700px;
-    padding-left: 700px;
     font-family: 'poppins';
     color: #444444;
-    margin-left: 500px;
-    margin-top: 70px;
+    margin-left: 100px;
+    margin-top: 140px;
+    width: 1100px;
 }
 
 #ListaAl {
@@ -96,4 +95,10 @@ body {
     margin-top: 84px;
     width: 50%;
     color: #444444;
+}
+
+#perfil{
+    margin-top: -49px;
+    margin-left: 60px;
+    
 }
