@@ -35,6 +35,7 @@ function Menu() {
                   <Nav.Item>
                     <Nav.Link eventKey="/alumno/list" href="/alumno/list">Gestión de alumnos<br /><i class="fa-solid fa-list"></i></Nav.Link>
                   </Nav.Item>
+                  <Perfil></Perfil>
                 </>
               ) : (
                 <>
