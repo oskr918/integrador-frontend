@@ -28,38 +28,34 @@ class InscripACurso extends React.Component {
       //    curso: this.state.Cursos,
       //    inscribir: [...this.state.AlumnoEnCurso]
       // }
-      this.setState({
-         GuardarDatos : {
-            curso: [this.state.GuardarDatos.curso],
-            inscribir: [...this.state.AlumnoEnCurso]
-         }
-      })
-
 
       console.log(this.state.GuardarDatos);
    }
 
    onAdd(alumno) {
       const newAlumnoEnCurso = [...this.state.AlumnoEnCurso, alumno];
+      const saveNewStudent = [...this.state.GuardarDatos.inscribir, alumno];
 
       this.setState({
-         AlumnoEnCurso: newAlumnoEnCurso
-      })
-
-      this.setState({
-         GuardarDatos : {
-            curso: [this.state.GuardarDatos.curso],
-            inscribir: [...this.state.AlumnoEnCurso]
+         AlumnoEnCurso: newAlumnoEnCurso,
+         GuardarDatos: {
+            curso: this.state.GuardarDatos.curso,
+            inscribir: saveNewStudent
          }
-      })
+      });
    }
 
    onDelete(alumno) {
       const elimAlumnoEnCurso = this.state.AlumnoEnCurso.filter(a => a.id !== alumno.id);
+      const deleteNewStudent = this.state.GuardarDatos.inscribir.filter(x => x.id !== alumno.id);
 
       this.setState({
-         AlumnoEnCurso: elimAlumnoEnCurso
-      })
+         AlumnoEnCurso: elimAlumnoEnCurso,
+         GuardarDatos: {
+            curso: this.state.GuardarDatos.curso,
+            inscribir: deleteNewStudent
+         }
+      });
 
    }
 
@@ -69,7 +65,7 @@ class InscripACurso extends React.Component {
       this.setState({
          GuardarDatos: {
             curso: curso.id,
-            inscribir: [...this.state.GuardarDatos.inscribir]
+            inscribir: []
          }
       });
 
@@ -77,7 +73,7 @@ class InscripACurso extends React.Component {
       fetch(`http://localhost:5000/api/curso/isncrip/${curso.id}`)
          .then(res => res.json())
          .then(result => {
-            console.log(result);
+            //console.log(result);
             this.setState({
                AlumnoEnCurso: result
             });
