@@ -73,7 +73,7 @@ class InscripACurso extends React.Component {
       });
 
       //Peticion de alumnos que estan inscriptos en ese curso elegido
-      fetch(`http://localhost:5000/api/curso/isncrip/${curso.id}`)
+      fetch(`http://localhost:5000/api/curso/inscrip/${curso.id}`)
          .then(res => res.json())
          .then(result => {
             console.log(result);
@@ -203,7 +203,7 @@ class InscripACurso extends React.Component {
 
                         Alumnos disponibles
 
-                        {this.state.GuardarDatos.inscribir.length != 0 && this.state.GuardarDatos.curso != null ? (
+                        {this.state.GuardarDatos.inscribir.length !== 0 && this.state.GuardarDatos.curso != null ? (
                            <Button variant="success" type="submit" className="col-lg-2" onClick={() => this.guardarDatos()}>
                               <i className="fa-solid fa-floppy-disk"></i>
                            </Button>

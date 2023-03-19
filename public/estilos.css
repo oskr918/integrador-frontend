@@ -8,6 +8,13 @@
     background: linear-gradient(to right, #4B94F7, #000e61);
 }
 
+.imgLog {
+    position: absolute;
+    left: 20px;
+    height: 45px;
+    vertical-align: middle;
+}
+
 .container {
     padding: 0.1px;
     font-family:'poppins';
@@ -38,10 +45,6 @@ button {
     font-weight: var(--bold-font);
     transition: var(--transition);
 }
-
-body {
-    background-image: url("../img/foto.png");
-  }
 
 #Lista {
     font-family: 'poppins';
@@ -99,6 +102,6 @@ body {
 
 #perfil{
     margin-top: -49px;
-    margin-left: 60px;
+    margin-left: 90px;
     
 }

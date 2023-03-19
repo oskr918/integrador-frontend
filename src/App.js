@@ -26,7 +26,7 @@ function App() {
         <Route path="/curso/list" element={<CursoList />} />
         <Route path="/curso/gest/:id" element={<CursoGest />} />
         <Route path="/curso/gest" element={<CursoGest />} />
-        <Route path="/curso/inscripcion" element={< InscripACurso/>} />
+        <Route path="/inscripcion" element={< InscripACurso/>} />
       </Routes>
       </div>
       <ToastContainer />

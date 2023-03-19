@@ -12,7 +12,7 @@ function MenuPerfil() {
 return (
   <>
   <ButtonGroup>
-      <DropdownButton as={ButtonGroup} title="Sesión iniciada" id="bg-nested-dropdown">
+      <DropdownButton as={ButtonGroup} id="bg-nested-dropdown">
         <Dropdown.Item eventKey="1">  <li><a class="dropdown-item" href="/Perfil"><i class="fa-solid fa-user"></i> Perfil</a></li></Dropdown.Item>
         <Dropdown.Item eventKey="2"><li><a class="dropdown-item" href="/cerrar-sesion" onClick={handleCerrarSesionClick}><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a></li></Dropdown.Item>
       </DropdownButton>

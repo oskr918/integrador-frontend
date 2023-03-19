@@ -17,8 +17,6 @@ function Menu() {
   console.log(user)
   return (
     <>
-      <body background="../img/foto.png">
-
         <h3 class="encabezado">
           PORTAL SILICON WEB FULL STACK
         </h3>
@@ -34,6 +32,9 @@ function Menu() {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="/alumno/list" href="/alumno/list">Gestión de alumnos<br/><i class="fa-solid fa-list"></i></Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="/inscripcion" href="/inscripcion">Inscripción<br/><i class="fa-solid fa-school-circle-check"></i></Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                   <MenuPerfil />
@@ -54,7 +55,6 @@ function Menu() {
               )}
             </Nav>
           </div>
-      </body>
     </>
   );
 }
