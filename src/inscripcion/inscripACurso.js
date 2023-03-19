@@ -23,6 +23,8 @@ class InscripACurso extends React.Component {
       this.guardarDatos = this.guardarDatos.bind(this);
    }
 
+   // Una ves elegido el curso y la lista de alumnos a iscribir
+   // ESta funcion tendria que hacer el POST (guardado)
    guardarDatos() {
 
       this.setState({
@@ -44,7 +46,7 @@ class InscripACurso extends React.Component {
       })
 
       this.setState({
-         GuardarDatos : {
+         GuardarDatos: {
             curso: this.state.GuardarDatos.curso,
             inscribir: [...this.state.AlumnoEnCurso]
          }
@@ -70,7 +72,7 @@ class InscripACurso extends React.Component {
          }
       });
 
-      //Peticion de alumnos que estan inscriptos en ese curso
+      //Peticion de alumnos que estan inscriptos en ese curso elegido
       fetch(`http://localhost:5000/api/curso/isncrip/${curso.id}`)
          .then(res => res.json())
          .then(result => {
@@ -145,7 +147,9 @@ class InscripACurso extends React.Component {
       });
 
       let rowsAlumnos = this.state.Alumnos.map((alumno, index) => {
-         //console.log(this.state.AlumnoEnCurso);
+         //mapeo el estado "alumnos" para luego comparar con "AlumnoEnCurso"
+         // findIndex se usa para buscar un elemento en un array. En este caso devolvera true si se encuentra
+         // y false si no esta.
          let inscripto = this.state.AlumnoEnCurso.findIndex(item => item.id === alumno.id) !== -1;
 
          //console.log(inscripto);
