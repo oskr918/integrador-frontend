@@ -24,14 +24,11 @@ class InscripACurso extends React.Component {
    }
 
    guardarDatos() {
-      // const guardarDatos = {
-      //    curso: this.state.Cursos,
-      //    inscribir: [...this.state.AlumnoEnCurso]
-      // }
+
       this.setState({
          GuardarDatos : {
-            curso: [this.state.GuardarDatos.curso],
-            inscribir: [...this.state.AlumnoEnCurso]
+            curso: this.state.GuardarDatos.curso,
+            inscribir: this.state.AlumnoEnCurso
          }
       })
 
@@ -48,7 +45,7 @@ class InscripACurso extends React.Component {
 
       this.setState({
          GuardarDatos : {
-            curso: [this.state.GuardarDatos.curso],
+            curso: this.state.GuardarDatos.curso,
             inscribir: [...this.state.AlumnoEnCurso]
          }
       })
@@ -69,7 +66,7 @@ class InscripACurso extends React.Component {
       this.setState({
          GuardarDatos: {
             curso: curso.id,
-            inscribir: [...this.state.GuardarDatos.inscribir]
+            inscribir: []
          }
       });
 
