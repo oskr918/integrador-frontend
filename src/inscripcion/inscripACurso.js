@@ -23,8 +23,8 @@ class InscripACurso extends React.Component {
       this.guardarDatos = this.guardarDatos.bind(this);
    }
 
-   // Una ves elegido el curso y la lista de alumnos a iscribir
-   // ESta funcion tendria que hacer el POST (guardado)
+   // Una vez elegido el curso y la lista de alumnos a inscribir
+   // Esta funcion tendria que hacer el POST (guardado)
    guardarDatos() {
 
       this.setState({
@@ -73,7 +73,7 @@ class InscripACurso extends React.Component {
       });
 
       //Peticion de alumnos que estan inscriptos en ese curso elegido
-      fetch(`http://localhost:5000/api/curso/inscrip/${curso.id}`)
+      fetch(`http://localhost:5000/api/curso/isncrip/${curso.id}`)
          .then(res => res.json())
          .then(result => {
             console.log(result);
@@ -218,7 +218,7 @@ class InscripACurso extends React.Component {
                         <thead>
                            <tr>
                               <th>Nombre</th>
-                              <th>Apeliido</th>
+                              <th>Apellido</th>
                               <th>DNI</th>
                               <th>Accion</th>
                            </tr>
