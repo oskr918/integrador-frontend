@@ -17,11 +17,13 @@ class InternalAlumnoGest extends React.Component {
 
   componentDidMount() {
     if (this.props.params.id) {
+      let token = localStorage.getItem('token')
       let request = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          "Accept": 'application/json'
+          "Accept": 'application/json',
+          "Authorization": `Bearer ${token}` 
         }
       };
 
@@ -79,14 +81,14 @@ class InternalAlumnoGest extends React.Component {
       apellido: this.state.apellido,
       dni: this.state.dni
     };
-
+    let token = localStorage.getItem('token')
     let request = {
       method: this.props.params.id ? 'PUT' : 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
         "Accept": 'application/json',
-        "authorization": sessionStorage.getItem('token')
+        "authorization": `Bearer ${token}`
       }
     };
 

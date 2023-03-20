@@ -80,12 +80,13 @@ class CursoList extends React.Component {
   }
 
   componentDidMount() {
+    const token = localStorage.getItem('token');
     let request = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         "Accept": 'application/json',
-        "authorization": sessionStorage.getItem('token')
+        'Authorization': `Bearer ${token}` 
       }
     };
     fetch("http://localhost:5000/api/curso", request)

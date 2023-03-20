@@ -30,11 +30,13 @@ class AlumnoList extends React.Component {
   }
 
   onDelete() {
+    const token = localStorage.getItem('token');
     let request = {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        "Accept": 'application/json'
+        "Accept": 'application/json',
+        "Authorization": `Bearer ${token}` 
       }
     };
 
@@ -78,15 +80,16 @@ class AlumnoList extends React.Component {
   }
 
   componentDidMount() {
+    const token = localStorage.getItem('token');
     let request = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         "Accept": 'application/json',
-        "authorization":sessionStorage.getItem('token')
+        "Authorization": `Bearer ${token}` 
       }
     }; 
-    fetch("http://localhost:5000/api/alumno",request)
+    fetch("http://localhost:5000/api/alumno", request)
     .then(res => {
       return res.json().then(body => {
         return {
@@ -128,7 +131,6 @@ class AlumnoList extends React.Component {
         }
       )
   }
-  debugger
   render() {
     let rowsTable = this.state.alumnos.map((alumno, index) => {
       return (

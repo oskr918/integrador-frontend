@@ -79,13 +79,14 @@ class InternalCursoGest extends React.Component {
       descripcion: this.state.descripcion,
       anio: this.state.anio
     };
-
+    const token = localStorage.getItem('token');
     let request = {
       method: this.props.params.id ? 'PUT' : 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
-        "Accept": 'application/json'
+        "Accept": 'application/json',
+        'Authorization': `Bearer ${token}` 
       }
     };
 
