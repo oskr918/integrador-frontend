@@ -31,7 +31,7 @@ function Menu() {
                     <Nav.Link href="/curso/list">Gestión de cursos<br/><i class="fa-solid fa-list-ol"></i></Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="/alumno/list" href="/alumno/list">Gestión de alumnos<br/><i class="fa-solid fa-list"></i></Nav.Link>
+                    <Nav.Link eventKey="/alumno/list" href="/alumno/list">Gestión de alumnos<br/><i class="fa-solid fa-graduation-cap"></i></Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="/inscripcion" href="/inscripcion">Inscripción<br/><i class="fa-solid fa-school-circle-check"></i></Nav.Link>
