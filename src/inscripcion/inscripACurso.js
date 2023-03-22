@@ -7,7 +7,13 @@ import Modal from 'react-bootstrap/Modal';
 class InscripACurso extends React.Component {
    constructor(props) {
       super(props);
-
+      /*
+      Estados:
+       Curso[] -> almacenara todos los curos en el sistema
+       Alumnos[] -> Almecenara todos los alumnos en el sistema
+       AlumnoEnCurso[] -> Almacenara solamente los *alumnos existentes* en el *curso elegido*
+       GuardarDatos{int, []} -> Almacenara el curso y una lista de alumnos que queramos guardar en la DB *alumno_curso*
+      */
       this.state = {
          Cursos: [],
          Alumnos: [],
