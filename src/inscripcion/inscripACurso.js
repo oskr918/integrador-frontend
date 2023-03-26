@@ -1,13 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 
 class InscripACurso extends React.Component {
    constructor(props) {
       super(props);
-
+      /*
+      Estados:
+       Curso[] -> almacenara todos los curos en el sistema
+       Alumnos[] -> Almecenara todos los alumnos en el sistema
+       AlumnoEnCurso[] -> Almacenara solamente los *alumnos existentes* en el *curso elegido*
+       GuardarDatos{int, []} -> Almacenara el curso y una lista de alumnos que queramos guardar en la DB *alumno_curso*
+      */
       this.state = {
          Cursos: [],
          Alumnos: [],
@@ -27,41 +32,99 @@ class InscripACurso extends React.Component {
    // Esta funcion tendria que hacer el POST (guardado)
    guardarDatos() {
 
-      this.setState({
-         GuardarDatos : {
-            curso: this.state.GuardarDatos.curso,
-            inscribir: this.state.AlumnoEnCurso
+      // Separando los "id" de los objetos "alumnos" entro del estado "GuardarDatos.inscribir"
+      const listIdAlumnos = this.state.GuardarDatos.inscribir.map(
+         alumno => alumno.id
+      );
+
+      let data = {
+         idCurso: this.state.GuardarDatos.curso,
+         idAlumnos: listIdAlumnos
+      }
+
+      const token = localStorage.getItem('token');
+      let request = {
+         method: 'POST',
+         body: JSON.stringify(data),
+         headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
          }
-      })
+      }
 
+      fetch('http://localhost:5000/api/curso/alumCurso/', request)
+         .then(res => {
+            return res.json().then(body => {
+               return {
+                  status: res.status,
+                  ok: res.ok,
+                  headers: res.headers,
+                  body: body
+               }
+            });
+         })
+         .then(result => {
+            if (result.ok) {
+               toast.success(result.body.message, {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light"
+               });
+               console.log("Resultado OK");
+               window.location.reload();
+               //this.props.navigate("/inscripcion");
+            } else {
+               toast.success(result.body.message, {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+               });
+               console.log("Resultado ERROR");
+               window.location.reload();
+               //this.props.navigate("/inscripcion");
+            }
+         },
+            (error) => {
+               console.log("resultado FUNCION ERROR");
+               console.log(error);
+            }
 
-      console.log(this.state.GuardarDatos);
+         );
    }
 
    onAdd(alumno) {
-      const newAlumnoEnCurso = [...this.state.AlumnoEnCurso, alumno];
-
-      this.setState({
-         AlumnoEnCurso: newAlumnoEnCurso
-      })
+      const newAlumnoEnCurso = [...this.state.GuardarDatos.inscribir, alumno];
 
       this.setState({
          GuardarDatos: {
             curso: this.state.GuardarDatos.curso,
-            inscribir: [...this.state.AlumnoEnCurso]
+            inscribir: newAlumnoEnCurso
          }
       })
    }
 
    onDelete(alumno) {
-      const elimAlumnoEnCurso = this.state.AlumnoEnCurso.filter(a => a.id !== alumno.id);
+      const elimAlumnoEnCurso = this.state.GuardarDatos.inscribir.filter(a => a.id !== alumno.id);
 
       this.setState({
-         AlumnoEnCurso: elimAlumnoEnCurso
+         GuardarDatos: {
+            curso: this.state.GuardarDatos.curso,
+            inscribir: elimAlumnoEnCurso
+         }
       })
 
    }
-
 
    buscarEnCurso(curso) {
 
@@ -133,8 +196,10 @@ class InscripACurso extends React.Component {
    render() {
 
       let rowsTable = this.state.Cursos.map((curso, index) => {
+
+         const select = curso.id === this.state.GuardarDatos.curso ? "table-primary": "";
          return (
-            <tr key={index}>
+            <tr key={index} className={select}>
                <td className="align-middle"> {curso.id} </td>
                <td className="align-middle"> {curso.nombre} </td>
                <td className="align-middle">
@@ -147,29 +212,79 @@ class InscripACurso extends React.Component {
       });
 
       let rowsAlumnos = this.state.Alumnos.map((alumno, index) => {
-         //mapeo el estado "alumnos" para luego comparar con "AlumnoEnCurso"
-         // findIndex se usa para buscar un elemento en un array. En este caso devolvera true si se encuentra
-         // y false si no esta.
-         let inscripto = this.state.AlumnoEnCurso.findIndex(item => item.id === alumno.id) !== -1;
+         
+         //console.log(this.state.AlumnoEnCurso.detail);
+         if (this.state.AlumnoEnCurso.detail === "sin alumno") {
+            /*
+               Con "enLista" hacemos exsactamente los mismo que con "inscripto" pero a hora ma mostrar
+               botones de "añadir" y de "eliminar" de la lista...
+            */
+            let enLista = this.state.GuardarDatos.inscribir.findIndex(dato => dato.id === alumno.id) !== -1;
 
-         //console.log(inscripto);
+            return (
+               <tr key={index}>
+                  <td className="align-middle"> {alumno.nombre} </td>
+                  <td className="align-middle"> {alumno.apellido} </td>
+                  <td className="align-middle"> {alumno.dni} </td>
+                  <td className="align-middle">
+
+                     {enLista ? (
+                        <Button variant="danger" type="submit" onClick={() => this.onDelete(alumno)}>
+                           <i className="fa-solid fa-plus"></i>
+                        </Button>
+                     ) : (
+                        < Button variant="primary" type="submit" onClick={() => this.onAdd(alumno)}>
+                           <i className="fa-solid fa-plus"></i>
+                        </Button>
+                     )}
+                  </td>
+               </tr >
+            )
+         }
+         /*
+            Mapeo el estado "alumnos" para luego comparar con "AlumnoEnCurso"
+            findIndex se usa para buscar un elemento en un array, devolviendo -1 si el elemento no exciste
+            o un valor diferente a -1 (!== -1) si se encuentra. En este caso devolvera true si se encuentra
+            y false si no esta.
+         */
+         let inscripto = this.state.AlumnoEnCurso.findIndex(item => item.id === alumno.id) !== -1;
+         /*
+            Con "enLista" hacemos exsactamente los mismo que con "inscripto" pero a hora ma mostrar
+            botones de "añadir" y de "eliminar" de la lista...
+         */
+         let enLista = this.state.GuardarDatos.inscribir.findIndex(dato => dato.id === alumno.id) !== -1;
+
          return (
             <tr key={index} className={inscripto ? "table-success" : ""}>
                <td className="align-middle"> {alumno.nombre} </td>
                <td className="align-middle"> {alumno.apellido} </td>
                <td className="align-middle"> {alumno.dni} </td>
                <td className="align-middle">
+                  {/*
+                     Usamos la variable "inscripto". Para mostrar los que ya estan en la DB,
+                     estos no podran ser modificados en "esta página"...
+                  */}
                   {inscripto ? (
-                     <Button variant="danger" type="submit" onClick={() => this.onDelete(alumno)}>
-                        <i className="fa-solid fa-xmark"></i>
+                     <Button variant="light" type="submit" disabled>
+                        <i className="fa-solid fa-database fa-lg"></i>
                      </Button>
                   ) : (
-                     <Button variant="primary" type="submit" onClick={() => this.onAdd(alumno)}>
-                        <i className="fa-solid fa-plus"></i>
-                     </Button>
+                     /*
+                        Y con la variables "enLista"... mostramos añadir (+) y si no esta delete (-).
+                        En lista de alumnos a "guardar en la DB".
+                     */
+                     enLista ? (
+                        <Button variant="danger" type="submit" onClick={() => this.onDelete(alumno)}>
+                           <i className="fa-solid fa-plus"></i>
+                        </Button>
+                     ) : (
+                        < Button variant="primary" type="submit" onClick={() => this.onAdd(alumno)}>
+                           <i className="fa-solid fa-plus"></i>
+                        </Button>
+                     )
                   )}
                </td>
-            </tr>
+            </tr >
          )
       })
 
@@ -203,7 +318,7 @@ class InscripACurso extends React.Component {
 
                         Alumnos disponibles
 
-                        {this.state.GuardarDatos.inscribir.length !== 0 && this.state.GuardarDatos.curso != null ? (
+                        {this.state.GuardarDatos.inscribir.length !== 0 && this.state.GuardarDatos.curso !== null ? (
                            <Button variant="success" type="submit" className="col-lg-2" onClick={() => this.guardarDatos()}>
                               <i className="fa-solid fa-floppy-disk"></i>
                            </Button>
@@ -235,4 +350,11 @@ class InscripACurso extends React.Component {
    }
 }
 
-export default InscripACurso;
+export function InscripcionACurso(props) {
+   const navigate = useNavigate();
+   const params = useParams();
+   return <InscripACurso navigate={navigate} params={params} />
+}
+
+
+export default InscripcionACurso;

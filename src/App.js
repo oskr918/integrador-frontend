@@ -6,7 +6,7 @@ import AlumnoList from './alumno/AlumnoList';
 import AlumnoGest from './alumno/AlumnoGest';
 import CursoList from './curso/CursoList';
 import CursoGest from './curso/CursoGest';
-import InscripACurso from './inscripcion/inscripACurso';
+import InscripcionACurso from './inscripcion/inscripACurso';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +26,7 @@ function App() {
         <Route path="/curso/list" element={<CursoList />} />
         <Route path="/curso/gest/:id" element={<CursoGest />} />
         <Route path="/curso/gest" element={<CursoGest />} />
-        <Route path="/inscripcion" element={< InscripACurso/>} />
+        <Route path="/inscripcion" element={< InscripcionACurso/>} />
       </Routes>
       </div>
       <ToastContainer />
